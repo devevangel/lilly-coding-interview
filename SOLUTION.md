@@ -14,3 +14,4 @@ I ensured that the following mission objectives were completed.
 - 'nodemon' npm package for allowing my code changes to be observed without restarting the Node server
 - 'try-catch' surrounded error-prone code in a try-catch block to catch potential errors and show user-friendly responses.
 - 'functions': Used custom functions to accomplish mission objectives.
+- 'error handler': A custom function that sends meaningful error messages with the appropriate status code to the client.

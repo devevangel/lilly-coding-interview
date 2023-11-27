@@ -31,7 +31,7 @@ function hideLoad() {
 }
 
 // Calls hide and show animation function based on state input
-function handlingLoading(state) {
+function setLoadingState(state) {
   switch (state) {
     case 'START':
       showLoad();
@@ -48,7 +48,7 @@ function handlingLoading(state) {
 
 // Gets all avaliable stock data (returns an array)
 async function loadAvailableStocks() {
-  handlingLoading('START');
+  setLoadingState('START');
   const response = await fetch('/stocks');
   const data = response.json();
   return data;
@@ -57,8 +57,14 @@ async function loadAvailableStocks() {
 // Gets data about specific stock symbol
 async function getSymbolStockData(name) {
   const response = await fetch(`/stocks/${name}`);
-  const data = response.json();
-  return response.status === 200 ? data : [];
+  const result = await response.json();
+  if (response.status === 200) {
+    return result;
+  } else {
+    const { message } = result;
+    console.log(`ERROR: ${message}`);
+    return [];
+  }
 }
 
 // Handles all server or API request function calls and returns data in a key value pair frmart
@@ -76,9 +82,9 @@ async function loadAllData() {
       }
     }
 
-    handlingLoading('END');
+    setLoadingState('END');
   } catch (error) {
-    handlingLoading('END');
+    setLoadingState('END');
     console.log('An error occured fetching stock data.', error);
   }
 
