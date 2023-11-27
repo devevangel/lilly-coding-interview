@@ -1,10 +1,46 @@
-.spinner{
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.spinner {
   font-size: 140px;
 }
+
 .spinner:after {
   content: '◌';
+  animation: spin 1s linear infinite;
+  display: block;
 }
 
 #chart {
-    border: 1px solid black;
+  border: 1px solid black;
+}
+
+.hide {
+  display: none;
+}
+
+.load {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+
+
+/* animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
