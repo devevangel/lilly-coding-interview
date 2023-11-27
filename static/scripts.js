@@ -50,7 +50,7 @@ function setLoadingState(state) {
 async function loadAvailableStocks() {
   setLoadingState('START');
   const response = await fetch('/stocks');
-  const data = response.json();
+  const data = await response.json();
   return data;
 }
 
@@ -62,7 +62,7 @@ async function getSymbolStockData(name) {
     return result;
   } else {
     const { message } = result;
-    console.log(`ERROR: ${message}`);
+    console.error(`ERROR: ${message}`);
     return [];
   }
 }
